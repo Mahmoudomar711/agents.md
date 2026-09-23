@@ -1,0 +1,42 @@
+# Fabric Pipeline Failure Analysis
+
+## When to Use
+
+Use this skill when a Microsoft Fabric pipeline
+fails during execution.
+
+## Do Not Use
+
+Do not use for:
+- Power BI report issues
+- SQL performance tuning
+- Notebook code reviews
+
+## Procedure
+
+1. Identify failing activity.
+2. Capture full error message.
+3. Classify error type:
+   - Authentication
+   - Copy Data
+   - Delta
+   - Spark
+   - Network
+4. Review activity logs.
+5. Apply troubleshooting matrix.
+6. Document root cause.
+7. Verify rerun success.
+
+## Output
+
+Provide:
+- Error category
+- Root cause
+- Resolution
+- Preventive action
+
+## References
+
+- Fabric Standards
+- Team Runbook
+- Microsoft Documentation
