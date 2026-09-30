@@ -1,0 +1,169 @@
+Tier Matrix
+
+# Non-Interactive Agent Tier Matrix
+
+| Tier              | Status      | Trigger        | Scope       | Monitoring   | Rollback        |
+| ----------------- | ----------- | -------------- | ----------- | ------------ | --------------- |
+| Cursor Automation | Adopted     | Manual Trigger | Repo Scoped | PR Review    | Revert Commit   |
+| Claude Routine    | Not Adopted | N/A            | N/A         | N/A          | N/A             |
+| CI                | Adopted     | Push / PR      | Repository  | CI Dashboard | Re-run / Revert |
+| Cloud Agents      | Not Adopted | N/A            | N/A         | N/A          | N/A             |
+
+Last Review Date: September 2026
+-------------------------------------------------------------------------------
+Cursor Automation Runbook
+
+# Cursor Automation
+
+## Purpose
+
+Automate approved repository workflows.
+
+## Trigger
+
+Manual invocation by authorized users.
+
+## Scope
+
+Approved repositories only.
+
+## Branch Policy
+
+Feature branches only.
+Direct execution against main is prohibited.
+
+## Secrets Policy
+
+No secrets stored in prompts.
+Use approved secret management solutions.
+
+## MCP Policy
+
+Only approved MCP integrations may be used.
+
+## Review Path
+
+Output requires pull request review before merge.
+
+## Monitoring
+
+Repository activity logs.
+
+## Rollback
+
+Revert pull request or commit.
+
+## Proven Run
+
+Data quality documentation update completed on test branch.
+--------------------------------------------------------------
+Example Skip
+
+# Claude Routine
+
+## Status
+
+Not Adopted
+
+## Decision Date
+
+September 2026
+
+## Reason
+
+No approved use case currently exists within the team.
+
+## Review Date
+
+Q4 Planning Cycle
+
+## Owner
+
+Data Engineering Team
+--------------------------------------------
+Example Skip
+
+# Claude Routine
+
+## Status
+
+Not Adopted
+
+## Decision Date
+
+September 2026
+
+## Reason
+
+No approved use case currently exists within the team.
+
+## Review Date
+
+Q4 Planning Cycle
+
+## Owner
+
+Data Engineering Team
+-------------------------------------------------
+CI Runbook
+
+# Continuous Integration
+
+## Trigger
+
+Pull Request
+Push to Repository
+
+## Scope
+
+Repository Build and Validation
+
+## Secrets Policy
+
+Managed through approved CI secret storage.
+
+## MCP Policy
+
+Not applicable unless explicitly configured.
+
+## Review Path
+
+Pull Request approval required.
+
+## Monitoring
+
+CI dashboard and build history.
+
+## Rollback
+
+Revert commit or deployment.
+
+## Proven Run
+
+Repository validation completed successfully on branch.
+---------------------------------------------------------
+Cloud Agent Decision
+
+# Cloud Agents
+
+## Status
+
+Not Adopted
+
+## Decision Date
+
+September 2026
+
+## Reason
+
+Current workloads are satisfied through local agent workflows and CI automation.
+
+## Future Review
+
+Reassess when long-running autonomous workflows are required.
+
+## Owner
+
+Data Engineering Team
+--------------------------------------------------------------
+
