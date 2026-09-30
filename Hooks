@@ -1,0 +1,213 @@
+# Agent Hooks
+
+The following guardrail hooks are automatically executed to prevent common data engineering errors.
+
+| Hook                           | Purpose                                                                      |
+| ------------------------------ | ---------------------------------------------------------------------------- |
+| validate-start-date            | Prevent accidental full-history loads caused by missing StartDate parameters |
+| validate-lakehouse-path        | Ensure Lakehouse source and target paths exist before execution              |
+| validate-incremental-watermark | Ensure incremental loads contain a valid watermark configuration             |
+
+## Design Principles
+
+* Hooks enforce policy, not business logic.
+* Hooks should fail fast when required inputs are missing.
+* Hooks should provide actionable error messages.
+* Hooks should be tested on a branch before merge.
+
+# Hook 1: validate-start-date
+
+## Purpose
+
+Prevent accidental historical loads caused by missing or invalid StartDate parameters.
+
+## Runs When
+
+Before pipeline execution.
+
+## Checks
+
+* StartDate parameter exists.
+* StartDate is a valid date.
+* StartDate is not greater than current date.
+* StartDate is not empty when required.
+
+## Warning Conditions
+
+* StartDate is missing but a default value can be safely applied.
+
+## Blocking Conditions
+
+* Invalid date format.
+* StartDate is in the future.
+* StartDate is required but missing.
+
+## Failure Behavior
+
+Execution is stopped and an error message is returned.
+
+## Example Success
+
+```text
+StartDate = 2026-09-01
+Validation Passed
+```
+
+## Example Failure
+
+```text
+StartDate = ''
+Validation Failed
+Reason: Missing StartDate parameter.
+```
+
+## Test Cases
+
+| Scenario    | Expected Result |
+| ----------- | --------------- |
+| Valid date  | Pass            |
+| Empty value | Fail            |
+| Future date | Fail            |
+| Null value  | Fail            |
+
+# Example:
+def validate_start_date(start_date):
+    if not start_date:
+        raise Exception("Missing StartDate")
+
+    parsed_date = parse_date(start_date)
+
+    if parsed_date > today():
+        raise Exception("StartDate cannot be in the future")
+
+    return True
+
+# Hook 2: validate-lakehouse-path
+
+## Purpose
+
+Prevent failures caused by invalid Lakehouse source or destination paths.
+
+## Runs When
+
+Before notebook execution.
+
+## Checks
+
+* Path exists.
+* User has access.
+* Folder structure is valid.
+
+## Warning Conditions
+
+* Folder exists but is empty.
+
+## Blocking Conditions
+
+* Path does not exist.
+* Access denied.
+* Invalid path format.
+
+## Failure Behavior
+
+Execution is stopped before Spark processing begins.
+
+## Example Success
+
+```text
+abfss://workspace/Files/netsuitedata/
+Validation Passed
+```
+
+## Example Failure
+
+```text
+abfss://workspace/Files/missingfolder/
+Validation Failed
+Reason: Path not found.
+```
+
+## Test Cases
+
+| Scenario            | Expected Result |
+| ------------------- | --------------- |
+| Existing path       | Pass            |
+| Missing path        | Fail            |
+| Invalid path syntax | Fail            |
+| Empty folder        | Warning         |
+
+# Example:
+
+def validate_lakehouse_path(path):
+    files = mssparkutils.fs.ls(path)
+
+    if files is None:
+        raise Exception("Lakehouse path not found")
+
+    return True
+
+# Hook: validate-incremental-watermark
+
+## Purpose
+
+Prevent incorrect incremental processing caused by missing watermark configuration.
+
+## Runs When
+
+Before incremental data loads.
+
+## Checks
+
+* Watermark column defined.
+* Watermark column exists.
+* Watermark value is not null.
+* Watermark data type is supported.
+
+## Warning Conditions
+
+* Watermark value is older than expected SLA.
+
+## Blocking Conditions
+
+* Missing watermark column.
+* Missing watermark value.
+* Unsupported data type.
+
+## Failure Behavior
+
+Execution is stopped and the load is not started.
+
+## Example Success
+
+```text
+lastmodifieddate
+Validation Passed
+```
+
+## Example Failure
+
+```text
+Watermark = NULL
+Validation Failed
+Reason: Missing watermark value.
+```
+
+## Test Cases
+
+| Scenario         | Expected Result |
+| ---------------- | --------------- |
+| Valid watermark  | Pass            |
+| Null watermark   | Fail            |
+| Missing column   | Fail            |
+| Invalid datatype | Fail            |
+
+# Example
+
+def validate_watermark(column_name, value):
+    if column_name is None:
+        raise Exception("Watermark column missing")
+
+    if value is None:
+        raise Exception("Watermark value missing")
+
+    return True
