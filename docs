@@ -1,0 +1,17 @@
+# Agent Hooks
+
+The following guardrail hooks are automatically executed to prevent common data engineering errors.
+
+| Hook                           | Purpose                                                                      |
+| ------------------------------ | ---------------------------------------------------------------------------- |
+| validate-start-date            | Prevent accidental full-history loads caused by missing StartDate parameters |
+| validate-lakehouse-path        | Ensure Lakehouse source and target paths exist before execution              |
+| validate-incremental-watermark | Ensure incremental loads contain a valid watermark configuration             |
+
+## Design Principles
+
+* Hooks enforce policy, not business logic.
+* Hooks should fail fast when required inputs are missing.
+* Hooks should provide actionable error messages.
+* Hooks should be tested on a branch before merge.
+
