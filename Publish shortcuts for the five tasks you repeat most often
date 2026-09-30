@@ -1,0 +1,116 @@
+# Agent Command Catalog
+
+## /validate-bronze
+
+Validate NetSuite source data against Bronze Lakehouse tables.
+
+### Arguments
+
+| Argument  | Default   | Description           |
+| --------- | --------- | --------------------- |
+| --table   | all       | Table to validate     |
+| --date    | yesterday | Validation date       |
+| --summary | true      | Return summary report |
+
+### Example
+
+```text
+/validate-bronze --table transaction
+```
+
+### Safety Note
+
+Does not modify source or target data.
+
+---
+
+## /analyze-pipeline-failure
+
+Analyze Microsoft Fabric pipeline failures.
+
+### Arguments
+
+| Argument      | Default  | Description              |
+| ------------- | -------- | ------------------------ |
+| --error       | required | Error message            |
+| --activity    | auto     | Activity name            |
+| --suggest-fix | true     | Return remediation steps |
+
+### Example
+
+```text
+/analyze-pipeline-failure --error "AADSTS700082"
+```
+
+### Safety Note
+
+Read-only diagnostic operation.
+
+---
+
+## /convert-to-fabric
+
+Convert SQL Server syntax into Fabric SQL or PySpark.
+
+### Arguments
+
+| Argument | Default    | Description     |
+| -------- | ---------- | --------------- |
+| --target | fabric-sql | Output platform |
+| --source | sql-server | Source platform |
+
+### Example
+
+```text
+/convert-to-fabric --target pyspark
+```
+
+### Safety Note
+
+Generated code must be reviewed before deployment.
+
+---
+
+## /data-quality-check
+
+Run standard data quality assessment.
+
+### Arguments
+
+| Argument | Default  | Description      |
+| -------- | -------- | ---------------- |
+| --table  | required | Dataset          |
+| --checks | standard | Validation rules |
+
+### Example
+
+```text
+/data-quality-check --table Customer_All
+```
+
+### Safety Note
+
+Assessment only. No data updates.
+
+---
+
+## /validate-invoice
+
+Validate invoice records before NetSuite submission.
+
+### Arguments
+
+| Argument        | Default | Description   |
+| --------------- | ------- | ------------- |
+| --business-unit | all     | Business unit |
+| --invoice-date  | current | Invoice date  |
+
+### Example
+
+```text
+/validate-invoice --business-unit Sirus
+```
+
+### Safety Note
+
+Validation only. Does not submit invoices.
