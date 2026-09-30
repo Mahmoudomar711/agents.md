@@ -1,0 +1,127 @@
+# Microsoft 365 MCP Integration
+
+## Purpose
+
+Provide agent access to approved Microsoft 365 resources through MCP.
+
+## Supported Operations
+
+* Search documents
+* Read documents
+* Search SharePoint sites
+* Retrieve Teams content
+* List files
+
+## Authentication
+
+Microsoft Entra ID authentication.
+
+## Authorization
+
+Users only access resources they already have permission to view.
+
+## Error Handling
+
+* Authentication failure
+* Authorization failure
+* Resource not found
+* Timeout
+
+## Logging
+
+All MCP calls are logged according to organizational policy.
+
+
+# Available MCP Tools
+
+| Tool              | Purpose                        |
+| ----------------- | ------------------------------ |
+| search_documents  | Search Microsoft 365 documents |
+| read_document     | Retrieve document content      |
+| search_sharepoint | Search SharePoint repositories |
+| list_files        | List available files           |
+| search_teams      | Search Teams content           |
+
+## Notes
+
+All tools inherit Microsoft 365 permissions.
+
+# MCP Integrations
+
+## Microsoft 365 MCP
+
+Use when:
+
+* Searching SharePoint
+* Reading documents
+* Discovering runbooks
+* Finding project artifacts
+
+Do Not Use When:
+
+* Data already exists in Fabric Lakehouse
+* Data can be obtained through approved internal APIs
+* High-volume ETL processing is required
+
+Preferred Data Path
+
+1. Fabric
+2. Approved Internal APIs
+3. Microsoft 365 MCP
+4. Manual Upload
+
+
+# MCP Error Handling
+
+## Authentication Failure
+
+Action:
+
+* Reauthenticate user.
+* Retry request.
+
+## Authorization Failure
+
+Action:
+
+* Return access denied message.
+* Do not bypass permissions.
+
+## Resource Not Found
+
+Action:
+
+* Return resource identifier.
+* Suggest search operation.
+
+## Timeout
+
+Action:
+
+* Retry once.
+* Return timeout status.
+
+------------------------ Waiting for this last step not yet ------------------------------------
+
+Deliverable 5 – Golden Path Test
+
+Agent Flow
+User
+ ↓
+MCP Search
+ ↓
+Document Found
+ ↓
+Read Document
+ ↓
+Summarize
+ ↓
+Return Result
+Evidence
+
+Capture:
+
+Request
+Tool Call
+Result
+Returned Response
