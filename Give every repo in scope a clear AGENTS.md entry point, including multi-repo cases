@@ -1,0 +1,241 @@
+Recommended Standard Template
+----------------------------------
+# AGENTS.md
+
+## Purpose
+
+This repository supports data engineering workflows and agent-assisted development.
+
+This file is the primary entry point for both humans and agents.
+
+---
+
+## Repository Overview
+
+Repository Owner: Data Engineering Team
+
+Primary Technology:
+
+* Microsoft Fabric
+* Lakehouse
+* PySpark
+* SQL Server
+
+---
+
+## Skills
+
+Available skills:
+
+| Skill                            | Purpose                      |
+| -------------------------------- | ---------------------------- |
+| data-quality-assessment          | Standard data quality review |
+| netsuite-bronze-reconciliation   | Source-to-Bronze validation  |
+| fabric-pipeline-failure-analysis | Pipeline troubleshooting     |
+
+Location:
+
+/skills
+
+---
+
+## Commands
+
+Available commands:
+
+| Command                   | Purpose                     |
+| ------------------------- | --------------------------- |
+| /data-quality-check       | Run data quality assessment |
+| /validate-bronze          | Validate Bronze layer       |
+| /analyze-pipeline-failure | Analyze Fabric failures     |
+
+Location:
+
+/commands
+
+---
+
+## Hooks
+
+Available hooks:
+
+| Hook                    | Purpose                          |
+| ----------------------- | -------------------------------- |
+| validate-start-date     | Prevent accidental full loads    |
+| validate-lakehouse-path | Validate source paths            |
+| validate-watermark      | Verify incremental configuration |
+
+Location:
+
+/hooks
+
+---
+
+## MCP Usage
+
+Approved MCP Integrations:
+
+* Microsoft 365 MCP
+
+Use MCP when:
+
+* Reading SharePoint documents
+* Searching project documentation
+
+Do Not Use MCP when:
+
+* Data exists in Fabric
+* Approved APIs already exist
+
+See:
+
+/docs/mcp
+
+---
+
+## Sub-Agents
+
+| Agent        | Responsibility    |
+| ------------ | ----------------- |
+| Exploration  | Gather context    |
+| Execution    | Perform changes   |
+| Verification | Validate outcomes |
+
+Location:
+
+/agents
+
+---
+
+## Naming Standards
+
+Skills:
+
+kebab-case
+
+Commands:
+
+/kebab-case
+
+Hooks:
+
+kebab-case
+
+Agents:
+
+role-based naming
+
+---
+
+## Shared Assets
+
+Location:
+
+/shared
+
+---
+
+## Related Documentation
+
+Rules:
+
+/rules
+
+Plugins:
+
+/plugins
+
+Runbooks:
+
+/docs
+
+---
+
+## Escalation
+
+If instructions conflict:
+
+1. File-specific rules
+2. User rules
+3. Workspace rules
+
+See:
+
+/docs/rule-precedence.md
+------------------------------------------------
+Multi-Repo Ownership Document
+
+# Multi-Repo Workspace Guidance
+
+## Preferred Root
+
+Open:
+
+Fabric-Platform
+
+Do Not Open Individual Child Repositories
+unless performing isolated maintenance.
+
+## Ownership
+
+Cross-cutting changes belong to:
+
+Fabric-Platform
+
+Examples:
+
+* Shared skills
+* Shared commands
+* Shared hooks
+* MCP configuration
+
+## Child Repository Responsibilities
+
+Bronze:
+Bronze ingestion only.
+
+Silver:
+Transformation only.
+
+Gold:
+Reporting only.
+
+Shared-Library:
+Reusable components only.
+
+## Conflict Resolution
+
+Root repository AGENTS.md is authoritative.
+
+Child repositories may extend instructions
+but must not override platform standards.
+-----------------------------------------------------
+Review Checklist
+
+# AGENTS.md Review Checklist
+
+## Repository Review
+
+* AGENTS.md exists.
+* Skills section present.
+* Commands section present.
+* Hooks section present.
+* MCP section present.
+* Sub-Agent section present.
+
+## Governance Review
+
+* No duplicated policies.
+* No conflicting MCP guidance.
+* No conflicting naming conventions.
+
+## Multi-Repo Review
+
+* Root repository identified.
+* Ownership documented.
+* Shared assets documented.
+
+Result:
+
+PASS / FAIL
+
