@@ -1,0 +1,157 @@
+Manifest
+
+name: data-quality-governance
+
+version: 1.0.0
+
+description: >
+Reusable data quality validation framework
+for Microsoft Fabric and Lakehouse workloads.
+
+owner: Data Engineering
+
+audience:
+
+* Data Engineers
+* Data Architects
+* Analytics Engineers
+
+contents:
+
+* Skill: data-quality-assessment
+* Command: data-quality-check
+* Hook: validate-start-date
+* Hook: validate-incremental-watermark
+
+install:
+
+* Import plugin package
+* Enable commands
+* Enable hooks
+
+uninstall:
+
+* Disable hooks
+* Remove plugin package
+
+data_handling:
+
+* Read-only validation
+* No data modification
+* No credential storage
+
+rollback:
+
+* Reinstall previous version
+
+Skill
+
+From the previous goal:
+
+data-quality-assessment
+
+Command
+
+/ data-quality-check
+
+Hooks:
+
+Hook 1
+validate-start-date
+Hook 2
+validate-incremental-watermark
+
+Installation Guide
+
+# Installation
+
+## Prerequisites
+
+* Approved repository access
+* Plugin installation permission
+
+## Steps
+
+1. Install package.
+2. Enable commands.
+3. Enable hooks.
+4. Verify skill availability.
+5. Execute validation test.
+
+## Validation
+
+Run:
+
+/data-quality-check --table test_table
+
+Expected Result:
+
+Validation report returned successfully.
+-----------------------------------------------
+Uninstall Guide
+
+# Uninstallation
+
+1. Disable plugin hooks.
+2. Remove plugin package.
+3. Verify commands removed.
+4. Verify no active references remain.
+
+Rollback may be performed by reinstalling the previous version.
+----------------------------------------------------------
+Changelog
+# Changelog
+
+## 1.0.0
+
+Initial Release
+
+Features:
+
+* Data Quality Assessment Skill
+* Data Quality Command
+* Start Date Validation Hook
+* Watermark Validation Hook
+
+Review Status:
+
+Submitted for marketplace review.
+--------------------------------------------------------
+Marketplace Review Checklist
+
+# Marketplace Review Checklist
+
+## Security
+
+* No embedded credentials
+* No hard-coded secrets
+* Read-only operations
+* Logging reviewed
+
+## Licensing
+
+* Internal content only
+* No third-party copyrighted assets
+
+## Documentation
+
+* Manifest complete
+* Install guide complete
+* Uninstall guide complete
+* Changelog complete
+
+## Testing
+
+* Clean install successful
+* Commands available
+* Hooks executed
+* Skill discoverable
+---------------------------------------------
+Progress Tracking
+
+| Milestone                   | Progress |
+| --------------------------- | -------- |
+| Manifest Complete           | 25%      |
+| Clean Install Test          | 50%      |
+| Marketplace Submission      | 75%      |
+| Approved or Review Complete | 100%     |
