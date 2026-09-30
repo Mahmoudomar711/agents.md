@@ -1,0 +1,101 @@
+# Rule Inventory
+
+| Rule ID | Scope     | Description                           | Status              |
+| ------- | --------- | ------------------------------------- | ------------------- |
+| WR-001  | Workspace | Prefer skills over long prompts       | Active              |
+| WR-002  | Workspace | Follow repository standards           | Active              |
+| UR-001  | User      | Use concise responses for diagnostics | Active              |
+| FR-001  | File      | Bronze validation workflow            | Candidate for Skill |
+
+## Findings
+
+* FR-001 contains procedural content.
+* FR-001 should be replaced by a skill reference.
+
+# Rule Conflict Register
+
+| Conflict ID | Rule A | Rule B | Resolution                      |
+| ----------- | ------ | ------ | ------------------------------- |
+| C-001       | WR-001 | FR-001 | Move procedure into skill       |
+| C-002       | UR-002 | FR-003 | Workspace rule takes precedence |
+
+## Notes
+
+Resolved conflicts are reviewed before merge.
+
+# Rule Precedence
+
+When multiple rules apply, precedence is:
+
+1. File Scope
+2. User Scope
+3. Workspace Scope
+
+The higher-precedence rule wins when instructions conflict.
+
+## Examples
+
+### Example 1
+
+Workspace Rule:
+
+```text
+Return summary output.
+```
+
+File Rule:
+
+```text
+Return detailed output.
+```
+
+Result:
+
+```text
+Detailed output.
+```
+
+File scope wins.
+
+### Example 2
+
+Workspace Rule:
+
+```text
+Use skills whenever available.
+```
+
+User Rule:
+
+```text
+Use manual procedure.
+```
+
+Result:
+
+```text
+Manual procedure.
+```
+
+User scope wins.
+
+
+# Rule Cleanup Summary
+
+## Actions Completed
+
+* Inventory completed.
+* Overlaps identified.
+* Conflicts resolved.
+* Precedence documented.
+* Long procedures moved into skills.
+
+## Skills Created
+
+* data-quality-assessment
+* fabric-pipeline-failure-analysis
+* netsuite-bronze-reconciliation
+
+## Result
+
+Reduced duplicated instructions and improved consistency across sessions.
